@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player1 : MonoBehaviour
 {
     public float moveSpeed = 5f;
-
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -18,14 +18,21 @@ public class Player1 : MonoBehaviour
         if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             this.transform.forward = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+            this.GetComponent<Animator>().SetBool("IsRun", true);
         }
+        else
+        {   this.GetComponent<Animator>().SetBool("IsRun", false);   }
 
         float h = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         float v = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
         Vector3 postionVector = new Vector3(h, 0, v);
         this.transform.position += postionVector;
+
+
        
+           
+            
 
     }
 }
